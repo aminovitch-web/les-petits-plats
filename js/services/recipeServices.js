@@ -1,7 +1,9 @@
 import { recipes } from "/data/recipes.js";
-export const recipeServices = async () => {
+
+export const recipeServices = () => {
     try {
-        console.log("recuperations des recettes avec succes");
+        console.log("Liste des recettes récupérées :");
+        console.table(recipes);
         return recipes;
     } catch (error) {
         console.error("Erreur lors de la récupération des données :", error);

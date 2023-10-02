@@ -1,28 +1,40 @@
-;import { recipeServices } from "../services/recipeServices.js";
+import { recipeServices } from "../services/recipeServices.js";
 import { recipeFactory } from "../factory/recipeFactory.js";
-
-const getRecipes = (recipes) => {
+const getRecipes = () => {
     try {
-        const recipesData =  recipeServices();
-        return recipesData;
-      } catch (error) {
-        console.error('Erreur lors de la récupération des photographes :', error)
-      }
-}
+        return recipeServices();
+    } catch (error) {
+        console.error("Erreur lors de la récupération des recettes :", error);
+    }
+};
 
-const displayData = (recipes) =>{
+const displayData = (recipes) => {
     const recipesSection = document.querySelector(".recipes-section");
     const noRecipesMessage = document.querySelector(".no-recipes-message");
-    const recipeCount =  document.querySelector(".recipe-count");
-    alert("display");
+    const recipeCount = document.querySelector(".recipe-count");
 
+    if (recipes.length === 0) {
+        noRecipesMessage.textContent = "aucune recette ne contient votre saisie";
+        recipesSection.innerHTML = "";
+    }else{
+        noRecipesMessage.textContent = "";
+        recipesSection.innerHTML = "";
+        recipes.forEach(recipe => {
+          // Pour chaque recette, créez un modèle de recette à partir de la fonction "recipesFactory".
+          const recipesModel = recipeFactory(recipe);
+          // Récupérez le DOM de la carte de recette à partir du modèle.
+          const recipeCardDOM = recipesModel.getRecipeCardDOM();
+          // Ajoutez la carte de recette au conteneur de la section des recettes.
+          recipesSection.appendChild(recipeCardDOM);
+        });
+        // Affichez le nombre total de recettes.
+        recipeCount.textContent = `${recipes.length} recettes`;
+    }
+};
+
+function init() {
+    const recipesData = getRecipes();
+    displayData(recipesData);
 }
-
-const init = () => {
-const { recipes } = getRecipes();
-displayData(recipes);
-
-}
-
 
 init();

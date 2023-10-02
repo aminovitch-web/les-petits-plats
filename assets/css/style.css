@@ -30,14 +30,8 @@
     font-family: "Manrope";
   }
   
-  a {
-    text-decoration: none;
-    color: inherit;
+  main {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  ul {
-    list-style: none;
-  }
-
-
-  
