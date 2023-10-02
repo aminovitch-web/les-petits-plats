@@ -1,0 +1,43 @@
+@import url('layouts/header.css');
+@import url('layouts/searchInput.css');
+@import url('layouts/dropdown.css');
+@import url('layouts/recipe.css');
+
+/* Variables */
+:root {
+    --lightgrey: #C6C6C6;
+    --grey: #7A7A7A;
+    --yellow: #ffd15b;
+  }
+
+  @font-face {
+    font-family: Anton;
+    src: url("../fonts/Anton-Regular.ttf");
+  }
+  @font-face {
+    font-family: Manrope;
+    src: url("../fonts/Manrope-Variable.ttf");
+  }
+    
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--lightgrey);
+    font-family: "Manrope";
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  ul {
+    list-style: none;
+  }
+
+
+  

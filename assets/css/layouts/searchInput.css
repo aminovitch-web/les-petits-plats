@@ -1,0 +1,23 @@
+#hero input {
+    border: none;
+    border-radius: inherit;
+    outline: none;
+    height:60px;
+    width: 90%;
+    padding-left: 24px;
+    font-size: 18px;
+  }
+  
+  #hero div {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    width:50%;
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  #hero .search-icon {
+    margin: 6px;
+    height: auto;
+  }

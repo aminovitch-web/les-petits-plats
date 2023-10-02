@@ -1,0 +1,24 @@
+header {
+    background: url('../../images/home-background.webp');
+    background-size: cover;
+    height: 94vh;
+    padding: 36px 72px;
+  }
+  
+  #hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  #hero h1 {
+    color: var(--yellow);
+    font-size: 44px;
+    text-align: center;
+    font-weight: 400;
+    margin: 24px;
+    font-family: 'Anton';
+  }
+  

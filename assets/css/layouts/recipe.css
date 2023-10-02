@@ -1,0 +1,95 @@
+/********** RECETTES **********/
+
+.main-section {
+    padding: 100px;
+    padding-top: 0;
+}
+
+.recipes-section {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+
+.recipe-article {
+    width: 380px;
+    height: 731px;
+    border-radius: 21px;
+    background-color: white;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.recipe-time {
+    position: absolute;
+    margin: 21px;
+    padding: 5px 15px;
+    top: 0;
+    right: 0;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: var(--yellow);
+    border-radius: 14px;
+}
+
+.recipe-image {
+    border-top-left-radius: 21px;
+    border-top-right-radius: 21px;
+    width: 380px;
+    height: 253px;
+    object-fit: cover
+}
+
+.recipe-ingredients-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: var(--grey);
+    margin-bottom: 0;
+}
+
+.recipe-info {
+    padding: 25px;
+}
+
+.recipe-info h2 {
+    margin-top: 0;
+}
+
+.recipe-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-description-text {
+    font-size: 14px;
+    /* Les lignes suivantes permettent de limiter l'affichage du texte à 4 lignes, comme sur la maquette */
+    height: 80px;
+    overflow: hidden;
+}
+
+.ingredients-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.ingredient-block {
+    margin: 12px 0;
+    font-size: 14px;
+    width: 45%;
+}
+
+.ingredient-quantity {
+    margin: 0;
+    color: var(--grey);
+}
+
+.ingredient-name {
+    font-weight: bold;
+    margin: 0;
+}
