@@ -1,4 +1,4 @@
-const recipesFactory = (data) => {
+export const recipeFactory = (data) => {
     const { id, image, name, servings, ingredients, time, description, appliance, ustensils } = data;
     const parsedIngredients = [];
   
