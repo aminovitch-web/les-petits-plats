@@ -1,6 +1,8 @@
 import { recipeServices } from "../services/recipeServices.js";
 import { recipeFactory } from "../factory/recipeFactory.js";
-const getRecipes = () => {
+
+
+export const getRecipes = () => {
     try {
         return recipeServices();
     } catch (error) {
@@ -8,7 +10,7 @@ const getRecipes = () => {
     }
 };
 
-const displayData = (recipes) => {
+export const displayData = (recipes) => {
     const recipesSection = document.querySelector(".recipes-section");
     const noRecipesMessage = document.querySelector(".no-recipes-message");
     const recipeCount = document.querySelector(".recipe-count");
