@@ -21,76 +21,141 @@ const filteredUtensils = new Set();
 //// Fonction pour normaliser le texte en minuscules
 const textNormalize = (word) => {
     return word.toLowerCase();
-}
+};
 
 // Boucle sur les recettes pour extraire et stocker les valeurs uniques d'ingrédients, appareils et ustensiles
 
-recipes.forEach((recipe) => {
-    recipe.ingredients
-        .map((recipeIngredient) => recipeIngredient.ingredient)
-        .forEach((ingredient) =>
-            uniqueIngredients.add(textNormalize(ingredient))
-        );
-});
+for (const recipe of recipes) {
+    for (const recipeIngredient of recipe.ingredients) {
+        const ingredient = textNormalize(recipeIngredient.ingredient);
+        uniqueIngredients.add(ingredient);
+    }
+}
 
-recipes
-    .map((recipe) => textNormalize(recipe.appliance))
-    .forEach((appliance) => uniqueAppliances.add(appliance));
+for (const recipe of recipes) {
+    const appliance = textNormalize(recipe.appliance);
+    uniqueAppliances.add(appliance);
+}
 
-recipes
-    .map((recipe) => recipe.ustensils.map((utensil) => textNormalize(utensil)))
-    .forEach((utensils) =>
-        utensils.forEach((utensil) => uniqueUtensils.add(utensil))
-    );
+for (const recipe of recipes) {
+    const utensils = recipe.ustensils.map((utensil) => textNormalize(utensil));
+    for (const utensil of utensils) {
+        uniqueUtensils.add(utensil);
+    }
+}
 
-// Fonction pour filtrer les recettes en fonction des critères de recherche et des filtres
-
+// approche  avec des bouclesnative de l'algorithme
 const filterRecipes = () => {
     const searchValue = textNormalize(mainSearch.value);
-    // Utilisation de la méthode filter pour que la recherche démarre uniquement lorsque 3 caractères sont entrés
 
-    const searchWords = searchValue
-        .split(/\s+/)
-        .filter((word) => word.length >= 3);
-    const filteredRecipes = recipes.filter((recipe) => {
+    const searchWords = searchValue.split(/\s+/);
+    const filteredRecipes = [];
+
+    for (let i = 0; i < recipes.length; i++) {
+        const recipe = recipes[i];
         const lowerCaseName = textNormalize(recipe.name);
         const lowerCaseDescription = textNormalize(recipe.description);
-        const matchesSearchWords = searchWords.every(
-            (word) =>
-                lowerCaseName.includes(word) ||
-                lowerCaseDescription.includes(word) ||
-                recipe.ingredients.some((ingredient) =>
-                    textNormalize(ingredient.ingredient).includes(word)
+        let matchesSearchWords = true;
+
+        for (let j = 0; j < searchWords.length; j++) {
+            const word = textNormalize(searchWords[j]);
+            if (
+                !(
+                    lowerCaseName.includes(word) ||
+                    lowerCaseDescription.includes(word)
                 )
-        );
+            ) {
+                let ingredientFound = false;
+                for (let k = 0; k < recipe.ingredients.length; k++) {
+                    const ingredient = textNormalize(
+                        recipe.ingredients[k].ingredient
+                    );
+                    if (ingredient.includes(word)) {
+                        ingredientFound = true;
+                        break;
+                    }
+                }
+                if (!ingredientFound) {
+                    matchesSearchWords = false;
+                    break;
+                }
+            }
+        }
 
-        const selectedIngredients =
-            selectedFilters.ingredients.map(textNormalize);
-        const selectedAppliances =
-            selectedFilters.appliances.map(textNormalize);
-        const selectedUtensils = selectedFilters.utensils.map(textNormalize);
+        const selectedIngredients = [];
+        for (let k = 0; k < selectedFilters.ingredients.length; k++) {
+            selectedIngredients.push(
+                textNormalize(selectedFilters.ingredients[k])
+            );
+        }
 
-        const hasSelectedIngredients = selectedIngredients.every((ingredient) =>
-            recipe.ingredients.some(
-                (item) => textNormalize(item.ingredient) === ingredient
-            )
-        );
+        const selectedAppliances = [];
+        for (let l = 0; l < selectedFilters.appliances.length; l++) {
+            selectedAppliances.push(
+                textNormalize(selectedFilters.appliances[l])
+            );
+        }
 
-        const hasSelectedAppliance =
-            selectedAppliances.length === 0 ||
-            selectedAppliances.includes(textNormalize(recipe.appliance));
+        const selectedUtensils = [];
+        for (let m = 0; m < selectedFilters.utensils.length; m++) {
+            selectedUtensils.push(textNormalize(selectedFilters.utensils[m]));
+        }
 
-        const hasSelectedUtensils = selectedUtensils.every((utensil) =>
-            recipe.ustensils.some((item) => textNormalize(item) === utensil)
-        );
+        let hasSelectedIngredients = true;
 
-        return (
+        for (let k = 0; k < selectedIngredients.length; k++) {
+            const ingredient = selectedIngredients[k];
+            let ingredientMatch = false;
+            for (let l = 0; l < recipe.ingredients.length; l++) {
+                if (
+                    textNormalize(recipe.ingredients[l].ingredient) ===
+                    ingredient
+                ) {
+                    ingredientMatch = true;
+                    break;
+                }
+            }
+            if (!ingredientMatch) {
+                hasSelectedIngredients = false;
+                break;
+            }
+        }
+
+        let hasSelectedAppliance = true;
+
+        if (selectedAppliances.length > 0) {
+            const normalizedAppliance = textNormalize(recipe.appliance);
+            if (!selectedAppliances.includes(normalizedAppliance)) {
+                hasSelectedAppliance = false;
+            }
+        }
+
+        let hasSelectedUtensils = true;
+
+        for (let m = 0; m < selectedUtensils.length; m++) {
+            const utensil = selectedUtensils[m];
+            let utensilMatch = false;
+            for (let n = 0; n < recipe.ustensils.length; n++) {
+                if (textNormalize(recipe.ustensils[n]) === utensil) {
+                    utensilMatch = true;
+                    break;
+                }
+            }
+            if (!utensilMatch) {
+                hasSelectedUtensils = false;
+                break;
+            }
+        }
+
+        if (
             matchesSearchWords &&
             hasSelectedIngredients &&
             hasSelectedAppliance &&
             hasSelectedUtensils
-        );
-    });
+        ) {
+            filteredRecipes.push(recipe);
+        }
+    }
 
     if (filteredRecipes.length === 0) {
         displayData([]);
@@ -292,40 +357,40 @@ const filterDropdownLists = (filteredRecipes) => {
     filteredAppliances.clear();
     filteredUtensils.clear();
 
-    filteredRecipes.map((recipe) => {
+    for (const recipe of filteredRecipes) {
         filteredAppliances.add(textNormalize(recipe.appliance));
-        recipe.ustensils.map((utensil) =>
-            filteredUtensils.add(textNormalize(utensil))
-        );
-        recipe.ingredients.map((ingredientData) =>
-            filteredIngredients.add(textNormalize(ingredientData.ingredient))
-        );
-    });
+        for (const utensil of recipe.ustensils) {
+            filteredUtensils.add(textNormalize(utensil));
+        }
+        for (const ingredientData of recipe.ingredients) {
+            filteredIngredients.add(textNormalize(ingredientData.ingredient));
+        }
+    }
 
     const checkDisplayItem = (itemText, set) => {
         return set.has(itemText);
-    }
+    };
 
-    ingredientItems.forEach((item) => {
+    for (const item of ingredientItems) {
         const itemText = textNormalize(item.textContent);
         item.style.display = checkDisplayItem(itemText, filteredIngredients)
             ? ""
             : "none";
-    });
+    }
 
-    applianceItems.forEach((item) => {
+    for (const item of applianceItems) {
         const itemText = textNormalize(item.textContent);
         item.style.display = checkDisplayItem(itemText, filteredAppliances)
             ? ""
             : "none";
-    });
+    }
 
-    utensilItems.forEach((item) => {
+    for (const item of utensilItems) {
         const itemText = textNormalize(item.textContent);
         item.style.display = checkDisplayItem(itemText, filteredUtensils)
             ? ""
             : "none";
-    });
+    }
 };
 
 //// Ajout d'écouteurs d'événements pour la recherche et les filtres
@@ -377,88 +442,40 @@ const ingredientItems = document.querySelectorAll(".ingredient-filter");
 const applianceItems = document.querySelectorAll(".appliance-filter");
 const utensilItems = document.querySelectorAll(".utensil-filter");
 
-ingredientItems.forEach((item) => {
-    const itemText = textNormalize(item.textContent);
-    item.addEventListener("click", () => {
-        const selectedValue = itemText;
-        const isSelected = item.classList.contains("selected");
+// Gestionnaire d'événement pour les filtres (ingrédients, appareils, ustensiles)
+const addFilterEventListeners = (items, filterType) => {
+    for (const item of items) {
+        const itemText = textNormalize(item.textContent);
+        item.addEventListener("click", () => {
+            const selectedValue = itemText;
+            const isSelected = item.classList.contains("selected");
 
-        if (isSelected) {
-            const updatedFilterValues = selectedFilters.ingredients.filter(
-                (item) => item !== selectedValue
-            );
-            selectedFilters.ingredients = updatedFilterValues;
-        } else {
-            if (isValidFilterInput(selectedValue, filterRegex)) {
-                item.classList.add("selected");
-                selectedFilters.ingredients.push(selectedValue);
-                filterRecipes();
-                displayFilters();
-            } else {
-                // Filtre non valide, affichez un message d'erreur
-                alert(
-                    "Le filtre n'est pas valide. Utilisez uniquement des lettres et des espaces."
+            if (isSelected) {
+                const updatedFilterValues = selectedFilters[filterType].filter(
+                    (item) => item !== selectedValue
                 );
-            }
-        }
-    });
-});
-
-// Gestionnaire d'événement pour les filtres des appareils
-applianceItems.forEach((item) => {
-    const itemText = textNormalize(item.textContent);
-    item.addEventListener("click", () => {
-        const selectedValue = itemText;
-        const isSelected = item.classList.contains("selected");
-
-        if (isSelected) {
-            const updatedFilterValues = selectedFilters.appliances.filter(
-                (item) => item !== selectedValue
-            );
-            selectedFilters.appliances = updatedFilterValues;
-        } else {
-            if (isValidFilterInput(selectedValue, filterRegex)) {
-                item.classList.add("selected");
-                selectedFilters.appliances.push(selectedValue);
-                filterRecipes();
-                displayFilters();
+                selectedFilters[filterType] = updatedFilterValues;
             } else {
-                // Filtre non valide, affichez un message d'erreur
-                alert(
-                    "Le filtre n'est pas valide. Utilisez uniquement des lettres et des espaces."
-                );
+                if (isValidFilterInput(selectedValue, filterRegex)) {
+                    item.classList.add("selected");
+                    selectedFilters[filterType].push(selectedValue);
+                    filterRecipes();
+                    displayFilters();
+                } else {
+                    // Filtre non valide, affichez un message d'erreur
+                    alert(
+                        "Le filtre n'est pas valide. Utilisez uniquement des lettres et des espaces."
+                    );
+                }
             }
-        }
-    });
-});
+        });
+    }
+};
 
-// Gestionnaire d'événement pour les filtres des ustensiles
-utensilItems.forEach((item) => {
-    const itemText = textNormalize(item.textContent);
-    item.addEventListener("click", () => {
-        const selectedValue = itemText;
-        const isSelected = item.classList.contains("selected");
-
-        if (isSelected) {
-            const updatedFilterValues = selectedFilters.utensils.filter(
-                (item) => item !== selectedValue
-            );
-            selectedFilters.utensils = updatedFilterValues;
-        } else {
-            if (isValidFilterInput(selectedValue, filterRegex)) {
-                item.classList.add("selected");
-                selectedFilters.utensils.push(selectedValue);
-                filterRecipes();
-                displayFilters();
-            } else {
-                // Filtre non valide, affichez un message d'erreur
-                alert(
-                    "Le filtre n'est pas valide. Utilisez uniquement des lettres et des espaces."
-                );
-            }
-        }
-    });
-});
+// Ajoutez des gestionnaires d'événements pour les filtres (ingrédients, appareils, ustensiles)
+addFilterEventListeners(ingredientItems, "ingredients");
+addFilterEventListeners(applianceItems, "appliances");
+addFilterEventListeners(utensilItems, "utensils");
 
 // Gestionnaire d'événement pour la recherche
 mainSearch.addEventListener("input", () => {
