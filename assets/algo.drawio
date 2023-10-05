@@ -1,0 +1,66 @@
+<mxfile host="app.diagrams.net" modified="2023-10-05T09:34:11.984Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0" etag="drkIea-wK8QtcxuHYdFK" version="22.0.2" type="device">
+  <diagram name="Page-1" id="oZ6r-u4gW6ldkTPryZaU">
+    <mxGraphModel dx="2249" dy="758" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="NLjAQ9Ce8CidEkuTGQos-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="NLjAQ9Ce8CidEkuTGQos-1" target="NLjAQ9Ce8CidEkuTGQos-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-1" value="début de recherche /champs de saisie" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="80" y="50" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="NLjAQ9Ce8CidEkuTGQos-4" target="NLjAQ9Ce8CidEkuTGQos-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-4" value="&lt;div&gt;début de recherche/&lt;/div&gt;&lt;div&gt;choix des filtres&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="470" y="50" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-5" value="&lt;font data-darkreader-inline-color=&quot;&quot; color=&quot;#ff9b61&quot; style=&quot;font-size: 14px; --darkreader-inline-color: #ff995d;&quot;&gt;2 type de recherches possible&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="241" y="31" width="208" height="29" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="NLjAQ9Ce8CidEkuTGQos-6" target="NLjAQ9Ce8CidEkuTGQos-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-6" value="3 caractères minimum" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="95" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="NLjAQ9Ce8CidEkuTGQos-13" target="NLjAQ9Ce8CidEkuTGQos-18" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="NLjAQ9Ce8CidEkuTGQos-13" target="NLjAQ9Ce8CidEkuTGQos-20" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-13" value="&lt;div&gt;Tri des recettes en utilisant la saisie de l&#39;utilisateur,vérifier que chaque mots dans la saisie à une correspondance avec :&lt;/div&gt;&lt;div&gt;=&amp;gt; Titre&lt;/div&gt;&lt;div&gt;=&amp;gt; Description&lt;/div&gt;&lt;div&gt;=&amp;gt; Ingrédients&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="226.5" y="331" width="297.5" height="113" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="NLjAQ9Ce8CidEkuTGQos-18" target="NLjAQ9Ce8CidEkuTGQos-31" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-18" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Actualisation de la section recette,affichage des recettes correspondante à la saisie trouvé&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="493" y="563" width="185" height="93" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="NLjAQ9Ce8CidEkuTGQos-20" target="NLjAQ9Ce8CidEkuTGQos-31" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-20" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Affichage message d&#39;erreur&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="4" y="569" width="178" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-28" value="Si aucune correspondance est trouvé" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF9B61;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-8" y="310" width="255" height="29" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-29" value="Résultats trouvé" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF9B61;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="497.5" y="462" width="134" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="NLjAQ9Ce8CidEkuTGQos-31" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Fin de la recherche /Abandon&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="274" y="759" width="179" height="89" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
