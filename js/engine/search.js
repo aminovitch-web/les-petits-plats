@@ -21,7 +21,7 @@ const filteredUtensils = new Set();
 //// Fonction pour normaliser le texte en minuscules
 const textNormalize = (word) => {
     return word.toLowerCase();
-}
+};
 
 // Boucle sur les recettes pour extraire et stocker les valeurs uniques d'ingrédients, appareils et ustensiles
 
@@ -304,7 +304,7 @@ const filterDropdownLists = (filteredRecipes) => {
 
     const checkDisplayItem = (itemText, set) => {
         return set.has(itemText);
-    }
+    };
 
     ingredientItems.forEach((item) => {
         const itemText = textNormalize(item.textContent);
@@ -465,7 +465,6 @@ mainSearch.addEventListener("input", () => {
     const searchValue = textNormalize(mainSearch.value);
 
     if (isValidSearchInput(searchValue)) {
-        toggleClearSearchIcon();
         filterRecipes();
     } else {
         // Recherche non valide, affichez un message d'erreur
