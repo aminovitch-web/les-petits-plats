@@ -93,7 +93,7 @@ const filterRecipes = () => {
     });
 
     if (filteredRecipes.length === 0) {
-        displayData([]);
+        displayData([],searchValue);
         return;
     }
 
